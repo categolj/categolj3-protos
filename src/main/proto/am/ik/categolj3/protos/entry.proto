@@ -1,0 +1,40 @@
+package am.ik.categolj3.protos;
+
+option java_multiple_files = true;
+
+option java_outer_classname = "EntryProtos";
+
+option java_package = "am.ik.categolj3.protos";
+
+
+message Entry {
+    required int64 entryId = 1;
+    optional string content = 2;
+
+    message Author {
+        required string name = 1;
+        required int64 date = 2;
+    }
+
+    required Author created = 3;
+    required Author updated = 4;
+
+    message FrontMatter {
+        required string title = 1;
+        repeated string tags = 2;
+        repeated string categories = 3;
+    }
+
+    required FrontMatter frontMatter = 5;
+}
+
+message EntryPage {
+    repeated Entry content = 1;
+    required int64 totalPages = 2;
+    required int64 totalElements = 3;
+    required bool first = 4;
+    required bool last = 5;
+    required int64 numberOfElements = 6;
+    required int32 size = 7;
+    required int32 number = 8;
+}
