@@ -32,23 +32,37 @@
             </extension>
         </extensions>
         <plugins>
-            <plugin>
-                <groupId>com.google.protobuf.tools</groupId>
-                <artifactId>maven-protoc-plugin</artifactId>
-                <version>0.4.4</version>
-                <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}</protocArtifact>
-                    <outputDirectory>${basedir}/src/generated/java/protos</outputDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
+
+          <plugin>
+	    <groupId>com.google.protobuf.tools</groupId>
+	    <artifactId>maven-protoc-plugin</artifactId>
+	    <version>0.4.4</version>
+	    <executions>
+	      <execution>
+		<id>gen-java</id>
+		<configuration>
+		  <protocArtifact>com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}</protocArtifact>
+		  <outputDirectory>${basedir}/src/generated/java/protos</outputDirectory>
+		</configuration>
+		<goals>
+		  <goal>compile</goal>
+		</goals>
+	      </execution>
+	      <execution>
+		<id>gen-go</id>
+		<configuration>
+		  <protocArtifact>com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}</protocArtifact>
+		  <outputDirectory>${basedir}/categolj3</outputDirectory>
+		  <pluginId>go</pluginId>
+		</configuration>
+		<goals>
+		  <goal>compile-custom</goal>
+		</goals>
+	      </execution>
+	    </executions>
+
+	  </plugin>
+	  <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>1.9.1</version>
