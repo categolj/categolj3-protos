@@ -6,7 +6,10 @@
 
     <groupId>am.ik.categolj3</groupId>
     <artifactId>categolj3-protos</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>categolj3-protos</name>
+    <description>Protobuf for CategoLJ3 API</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -14,6 +17,42 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <protobuff-java.version>2.6.1</protobuff-java.version>
     </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/categolj/categolj3-protos</url>
+        <connection>scm:git:git@github.com:categolj/categolj3-protos.git</connection>
+        <developerConnection>scm:git:git@github.com:categolj/categolj3-protos.git</developerConnection>
+    </scm>
+
+    <url>https://github.com/categolj/categolj3-protos</url>
+
+    <developers>
+        <developer>
+            <id>making</id>
+            <name>Toshiaki Maki</name>
+            <email>makingx@gmail.com</email>
+            <url>https://twitter.com/making</url>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -33,36 +72,40 @@
         </extensions>
         <plugins>
 
-          <plugin>
-	    <groupId>com.google.protobuf.tools</groupId>
-	    <artifactId>maven-protoc-plugin</artifactId>
-	    <version>0.4.4</version>
-	    <executions>
-	      <execution>
-		<id>gen-java</id>
-		<configuration>
-		  <protocArtifact>com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}</protocArtifact>
-		  <outputDirectory>${basedir}/src/generated/java/protos</outputDirectory>
-		</configuration>
-		<goals>
-		  <goal>compile</goal>
-		</goals>
-	      </execution>
-	      <execution>
-		<id>gen-go</id>
-		<configuration>
-		  <protocArtifact>com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}</protocArtifact>
-		  <outputDirectory>${basedir}/categolj3</outputDirectory>
-		  <pluginId>go</pluginId>
-		</configuration>
-		<goals>
-		  <goal>compile-custom</goal>
-		</goals>
-	      </execution>
-	    </executions>
+            <plugin>
+                <groupId>com.google.protobuf.tools</groupId>
+                <artifactId>maven-protoc-plugin</artifactId>
+                <version>0.4.4</version>
+                <executions>
+                    <execution>
+                        <id>gen-java</id>
+                        <configuration>
+                            <protocArtifact>
+                                com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}
+                            </protocArtifact>
+                            <outputDirectory>${basedir}/src/generated/java/protos</outputDirectory>
+                        </configuration>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>gen-go</id>
+                        <configuration>
+                            <protocArtifact>
+                                com.google.protobuf:protoc:${protobuff-java.version}:exe:${os.detected.classifier}
+                            </protocArtifact>
+                            <outputDirectory>${basedir}/categolj3</outputDirectory>
+                            <pluginId>go</pluginId>
+                        </configuration>
+                        <goals>
+                            <goal>compile-custom</goal>
+                        </goals>
+                    </execution>
+                </executions>
 
-	  </plugin>
-	  <plugin>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>1.9.1</version>
